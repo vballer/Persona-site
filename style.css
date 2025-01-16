@@ -1,0 +1,382 @@
+/* General Body Styling */
+body {
+  font-family: 'Expose Regular', sans-serif;
+  color: #fff;
+  background: linear-gradient(135deg, #000, #111);
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+header {
+  background: #ff0313;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 7em;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header h1 span:nth-child(odd) {
+  color: #000;
+}
+
+header h1 span:nth-child(even) {
+  color: #fff;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 2.5em;
+  font-family: 'Expose Regular', sans-serif;
+}
+
+nav a:hover {
+  color: #000000;
+}
+
+section {
+  margin-top: 150px;
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #222, #333);
+}
+
+section h2 {
+  font-size: 4.5em;
+  margin-bottom: 10px;
+}
+
+section p {
+  font-size: 6em;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+#stats .stat-item {
+  margin-bottom: 20px;
+  font-size: 5em;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  transform: rotate(2deg);
+}
+
+#stats .stat-item::before {
+  content: '';
+  position: absolute;
+  background-color: rgb(244, 244, 244); /* Red overlay */
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  transform: skew(-20deg); /* Slightly more distorted parallelogram */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#stats .stat-item:hover::before {
+  opacity: 1;
+  animation: pulseRed 1.5s infinite;
+}
+
+@keyframes pulseRed {
+  0% {
+    transform: scale(1) skew(-20deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) skew(-20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) skew(-20deg);
+    opacity: 1;
+  }
+}
+
+#stats .stat-item:hover::after {
+  content: '';
+  position: absolute;
+  background-color: neonblue; /* Neon blue overlay */
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transform: skew(-45deg); /* More angled, more distorted overlay */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#stats .stat-item:hover::after {
+  opacity: 1;
+}
+
+#stats .stat-item p {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+#stats .stat-item:hover p {
+  color: #fff; /* White text on hover */
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 1); /* Thicker black outline */
+}
+
+#stats .stat-item:hover p::after {
+  content: attr(data-shadow); /* White slightly bigger version of text */
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  font-size: 5.2em; /* Slightly bigger size for shadow */
+  color: #fff;
+  z-index: -1;
+}
+
+progress {
+  width: 800px;
+  height: 60px;
+  border-radius: 6px;
+}
+
+progress::-webkit-progress-bar {
+  background: #292929;
+}
+
+progress::-webkit-progress-value {
+  background: #ff0000;
+}
+
+progress::-webkit-progress-background {
+  background: #fff; /* Keep white overlay on the progress bars */
+}
+
+/* Button Styling */
+button {
+  background: #ff0313;
+  color: #fff;
+  border: none;
+  padding: 18px 36px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 4em;
+  font-family: 'Expose Regular', sans-serif;
+  position: relative;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+button span {
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 1);
+  transform: skew(15deg);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+button:hover::before {
+  opacity: 1;
+  animation: pulseButtonWhite 1.5s infinite;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:hover span {
+  color: #000;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 1);
+}
+
+button:hover span::after {
+  content: attr(data-shadow); /* White slightly bigger version of text */
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  font-size: 4.5em; /* Slightly bigger size for shadow */
+  color: #fff;
+  z-index: -1;
+}
+
+button:hover::after {
+  content: '';
+  position: absolute;
+  background: rgb(255, 0, 0); /* Red overlay */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: skew(-15deg);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -2;
+}
+
+button:hover::after {
+  opacity: 1;
+  animation: pulseButtonRed 1.5s infinite;
+}
+
+@keyframes pulseButtonRed {
+  0% {
+    transform: scale(1) skew(-15deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) skew(-15deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) skew(-15deg);
+    opacity: 1;
+  }
+}
+
+button:hover::after {
+  content: '';
+  position: absolute;
+  background: rgb(0, 255, 247); /* Neon blue overlay */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: skew(0deg, -5deg); /* Reduced skew for less tilt */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  z-index: -3;
+  animation: blueSlam 0.4s ease-in-out, spinButton 0.4s ease-in-out; /* Both slam and spin at the same time */
+}
+
+@keyframes blueSlam {
+  0% {
+    transform: scale(1.2) skew(0deg, -5deg); /* Slightly stretched start */
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) skew(0deg, -5deg); /* Rapid movement towards normal size */
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) skew(0deg, -5deg); /* Normal size */
+    opacity: 1;
+  }
+}
+
+@keyframes spinButton {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(10deg); /* Subtle spin */
+  }
+}
+
+button:hover::after {
+  animation: bluePulse 1.5s infinite; /* Return to pulsing state after slam */
+}
+
+@keyframes bluePulse {
+  0% {
+    transform: scale(1) skew(0deg, -5deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) skew(0deg, -5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) skew(0deg, -5deg);
+    opacity: 1;
+  }
+}
+
+#star-container {
+  position: relative;
+  margin-top: 50px;
+  text-align: center;
+}
+
+#rank-up-star {
+  width: 200px;
+  height: 200px;
+  background: url('../images/star.png') no-repeat center;
+  background-size: contain;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+#rank-up-star.rank {
+  transform: scale(1.1);
+}
+
+#point-up {
+  font-size: 12em;
+  color: #ffda00;
+  text-transform: uppercase;
+  animation: fadeInOut 2s ease-in-out forwards;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
